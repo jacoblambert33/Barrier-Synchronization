@@ -20,9 +20,9 @@ Ubuntu 12.04 LTS (running on 64-bit x86 hardware).
 
 These experiments were performed for the following barriers : 
 
-1. default barrier, 
-2. sense-reversing centralized barrier, and
-3. dissemination barrier. 
+1. Default barrier, 
+2. Sense-reversing centralized barrier, and
+3. Dissemination barrier. 
  
 These values were then aggregated, and a per barrier value was computed - which was then used by us for deriving conclusions.
 
@@ -30,7 +30,7 @@ These values were then aggregated, and a per barrier value was computed - which 
 
 **Experiment 1**
 
-![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/tree/master/Pngs/1.png "Variation in completion times")
+![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/blob/master/Pngs/1.png "Variation in completion times")
 
 1. I was hoping that the default barrier implementation (i.e. the one provided by the library) would fare much better than the ones implemented. Much to my amazement, the default barrier performed the worst, relatively! Looking at the trends in graph, one could conjecture that the default barrier (being deployed by the library) is something on the lines of sense-reversing centralized barrier.
 2. From the graph (depicted above), implementation of dissemination barrier was far more performant than  sense-reversing centralized and default barriers. As far as comparisons between the sense-reversing centralized and dissemination barriers are concerned, one can expect the speedup (in case of dissemination barriers) due to the fact that there are no contentious shared variables to deal with. This idea was further supported by the empirically derived results.
@@ -38,7 +38,7 @@ These values were then aggregated, and a per barrier value was computed - which 
 
 **Experiment 2**
 
-![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/tree/master/Pngs/2.png "Time Elpased v/s Barrier Count")
+![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/blob/master/Pngs/2.png "Time Elpased v/s Barrier Count")
 
 Another follow-up experimentation (with data derived from OpenMP barriers) was to examine the effects of having multiple barriers on execution time. I initially thought that as the number of barriers were increased, the execution time would increase proportionately. Much to surprise, the time elapsed plateau-ed with an increase in barrier count. I attribute caching for this behavior - when the execution started, the working set had to be loaded into caches. Once the working set was loaded, the execution was only dealing with data in main memory (it no longer had to fault, and subsequently fetch anything from disk).
 
