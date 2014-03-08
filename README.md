@@ -44,11 +44,18 @@ Another follow-up experimentation (with data derived from OpenMP barriers) was t
 
 ###Compiling and executing code:
 1. Run **make**
-2. ./senseReverseBarrier *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output1.txt
-3. ./dissemination *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output2.txt
-4. ./defaultBarrierOpenMP *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output3.txt
-5. cat output[123].txt | grep "METHOD --" > filtered.txt
-6. python extract.py filtered.txt
+2. For running binaries individually:
 
-The results will be stored in a csv named "fin.csv".
+  1. ./senseReverseBarrier *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output1.txt
+  2. ./dissemination *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output2.txt
+  3. ./defaultBarrierOpenMP *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output3.txt
+
+3. For running binaries via automated script
+
+  1. chmod a+x OpenMPRun.sh
+  2. ./OpenMPRun.sh > output.txt
+  3. cat output.txt | grep "METHOD --" > filtered.txt
+  4. python extract.py filtered.txt
+
+  The results will be stored in a csv named "fin.csv".
 
