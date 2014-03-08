@@ -15,7 +15,7 @@ Ubuntu 12.04 LTS (running on 64-bit x86 hardware).
 ###Experimentation Setup:
 
 1. Used a four-core server from JINX cluster (GaTech). 
-2. Default OpenMP library function was used for measuring time elapsed - omp_get_wtime(). 
+2. Default OpenMP library function was used for measuring elapsed time - omp_get_wtime(). 
 3. The timings were noted for each thread, during each interaction with barriers. 
 
 These experiments were performed for the following barriers : 
