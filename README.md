@@ -46,9 +46,9 @@ Another follow-up experimentation (with data derived from OpenMP barriers) was t
 1. Run **make**
 2. For running binaries individually:
 
-  1. ./senseReverseBarrier *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output1.txt
-  2. ./dissemination *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output2.txt
-  3. ./defaultBarrierOpenMP *\<number\_of\_threads\>* *\<number\_of\_barriers\>* \> output3.txt
+  1. ./senseReverseBarrier *\<number\_of\_threads\>* *\<number\_of\_barriers\>*
+  2. ./dissemination *\<number\_of\_threads\>* *\<number\_of\_barriers\>*
+  3. ./defaultBarrierOpenMP *\<number\_of\_threads\>* *\<number\_of\_barriers\>*
 
 3. For running binaries via automated script
 
