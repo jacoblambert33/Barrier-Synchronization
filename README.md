@@ -13,9 +13,22 @@ This is another variant of barrier synchronization methodologies - one of the ad
 Ubuntu 12.04 LTS (running on 64-bit x86 hardware).
 
 ###Experimentation Setup:
+<<<<<<< HEAD
 Used a four-core server from JINX cluster (GaTech). After deploying code to cluster, experimentation centered around capturing variations in execution times with thread count and with number of barriers. Varying number of barriers from 1 to 900 -  with increments of 100, and number of threads from 2 to 8 - as it wouldn't make sense to go beyond 8, considering the fact that we were experimenting on a single four-core server (which guaranteed two hardware threads / core). Default OpenMP library function was used for measuring time elapsed - omp_get_wtime(). The timings were noted for each thread, during each interaction with barriers. These experiments were performed for the following barriers : 
 1. default barrier, 
 2. sense-reversing centralized barrier, and
 3. dissemination barrier. 
 These values were then aggregated, and a per barrier value was computed - which was then used by us for deriving conclusions.
 
+=======
+Used a four-core server from JINX cluster (GaTech). After deploying code to cluster, experimentation centered around capturing variations in execution times with thread count and with number of barriers. Varying number of barriers from 1 to 900 -  with increments of 100, and number of threads from 2 to 8 - as it wouldn't make sense to go beyond 8, considering the fact that we were experimenting on a single four-core server (which guaranteed two hardware threads / core). Default OpenMP library function was used for measuring time elapsed - omp_get_wtime(). The timings were noted for each thread, during each interaction with barriers. These experiments were performed for the following barriers :
+
+1. default barrier, 
+2. sense-reversing centralized barrier, and
+3. dissemination barrier. 
+
+These values were then aggregated, and a per barrier value was computed - which was then used by us for deriving conclusions.
+
+
+
+>>>>>>> d114dd35b83e3c41c89b00ea6ab4a571a12d221c
