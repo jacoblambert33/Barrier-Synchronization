@@ -19,8 +19,8 @@ with open(argv[1],'r') as fi:
 with open("fin.csv",'w') as fo:
 	for i in data:
 		for j in sorted(data[i][0]):
-			fo.write(i+","+str(j)+","+str(data[i][0][j]/10.0)+"\n")
+			fo.write(i+","+str(j)+","+str(data[i][0][j]/(1.0*len(data[i][0].keys())))+"\n")
 		fo.write("\n")
 		for k in sorted(data[i][1]):
-			fo.write(i+","+str(k)+","+str(data[i][1][k]/10.0)+"\n")
+			fo.write(i+","+str(k)+","+str(data[i][1][k]/(1.0*len(data[i][1].keys())))+"\n")
 		fo.write("\n")
