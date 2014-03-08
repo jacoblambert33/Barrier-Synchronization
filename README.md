@@ -38,7 +38,7 @@ These values were then aggregated, and a per barrier value was computed - which 
 
 **Experiment 2**
 
-![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/blob/master/Pngs/2.png "Time Elpased v/s Barrier Count")
+![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/blob/master/Pngs/2.png "Time Elapsed v/s Barrier Count")
 
 Another follow-up experimentation (with data derived from OpenMP barriers) was to examine the effects of having multiple barriers on execution time. I initially thought that as the number of barriers were increased, the execution time would increase proportionately. Much to surprise, the time elapsed plateau-ed with an increase in barrier count. I attribute caching for this behavior - when the execution started, the working set had to be loaded into caches. Once the working set was loaded, the execution was only dealing with data in main memory (it no longer had to fault, and subsequently fetch anything from disk).
 
