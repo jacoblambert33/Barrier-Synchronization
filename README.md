@@ -13,22 +13,38 @@ This is another variant of barrier synchronization methodologies - one of the ad
 Ubuntu 12.04 LTS (running on 64-bit x86 hardware).
 
 ###Experimentation Setup:
-<<<<<<< HEAD
-Used a four-core server from JINX cluster (GaTech). After deploying code to cluster, experimentation centered around capturing variations in execution times with thread count and with number of barriers. Varying number of barriers from 1 to 900 -  with increments of 100, and number of threads from 2 to 8 - as it wouldn't make sense to go beyond 8, considering the fact that we were experimenting on a single four-core server (which guaranteed two hardware threads / core). Default OpenMP library function was used for measuring time elapsed - omp_get_wtime(). The timings were noted for each thread, during each interaction with barriers. These experiments were performed for the following barriers : 
-1. default barrier, 
-2. sense-reversing centralized barrier, and
-3. dissemination barrier. 
-These values were then aggregated, and a per barrier value was computed - which was then used by us for deriving conclusions.
 
-=======
-Used a four-core server from JINX cluster (GaTech). After deploying code to cluster, experimentation centered around capturing variations in execution times with thread count and with number of barriers. Varying number of barriers from 1 to 900 -  with increments of 100, and number of threads from 2 to 8 - as it wouldn't make sense to go beyond 8, considering the fact that we were experimenting on a single four-core server (which guaranteed two hardware threads / core). Default OpenMP library function was used for measuring time elapsed - omp_get_wtime(). The timings were noted for each thread, during each interaction with barriers. These experiments were performed for the following barriers :
+1. Used a four-core server from JINX cluster (GaTech). 
+2. Default OpenMP library function was used for measuring time elapsed - omp_get_wtime(). 
+3. The timings were noted for each thread, during each interaction with barriers. 
+
+These experiments were performed for the following barriers : 
 
 1. default barrier, 
 2. sense-reversing centralized barrier, and
 3. dissemination barrier. 
-
+ 
 These values were then aggregated, and a per barrier value was computed - which was then used by us for deriving conclusions.
 
+###Interesting tidbits:
+
+**Experiment 1**
+
+![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/tree/master/Pngs/1.png "Variation in completion times")
+1. I was hoping that the default barrier implementation (i.e. the one provided by the library) would fare much better than the ones implemented. Much to my amazement, the default barrier performed the worst, relatively! Looking at the trends in graph, one could conjecture that the default barrier (being deployed by the library) is something on the lines of sense-reversing centralized barrier.
+2. From the graph (depicted above), implementation of dissemination barrier was far more performant than  sense-reversing centralized and default barriers. As far as comparisons between the sense-reversing centralized and dissemination barriers are concerned, one can expect the speedup (in case of dissemination barriers) due to the fact that there are no contentious shared variables to deal with. This idea was further supported by the empirically derived results.
+3. Was hoping that as the number of threads increased, the time elapsed (during their execution around a barrier) would grow linearly. To my surprise, I found that there were regions in the graphs, wherein the increase in number of threads yielded plateau like structure rather than a straight 45-degree line. Moreover, from the data yielded by the default barrier, there was a sharp decline of time elapsed with increase in thread count (i.e. when thread count goes from 6 to 8). The results of sense-reversing centralized barrier is coherent with my expectations - as the number of threads grows, so does the contention for the global ‘sense’ variable, leading to increased execution times.
+
+**Experiment 2**
+
+![alt text](https://github.com/rohit-jamuar/Barrier-Synchronization/tree/master/Pngs/2.png "Time Elpased v/s Barrier Count")
+
+Another follow-up experimentation (with data derived from OpenMP barriers) was to examine the effects of having multiple barriers on execution time. I initially thought that as the number of barriers were increased, the execution time would increase proportionately. Much to surprise, the time elapsed plateau-ed with an increase in barrier count. I attribute caching for this behavior - when the execution started, the working set had to be loaded into caches. Once the working set was loaded, the execution was only dealing with data in main memory (it no longer had to fault, and subsequently fetch anything from disk).
+
+###Compiling and executing code:
+1. run **make**
+2. ./senseReverseBarrier <number\_of\_threads> <number\_of\_barriers>
+3. ./dissemination <number\_of\_threads> <number\_of\_barriers>
+4. ./defaultBarrierOpenMP <number\_of\_threads> <number\_of\_barriers>
 
 
->>>>>>> d114dd35b83e3c41c89b00ea6ab4a571a12d221c
